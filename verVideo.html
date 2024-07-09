@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Video</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/verCurso.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/lightslider.css">
+    <script src="js/JQuery.js"></script>
+    <script src="js/lightslider.js"></script>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Menu -->
+    <section class="contenedor-navegacion">
+        <nav class="navegacion">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="Logo de Unet">
+            </a>
+            <div class="menu-hamburguesa"></div>
+            <ul class="lista-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropbtn">Categorías</a>
+                    <div class="dropdown-content" id="dropdown-categorias">
+                        <!-- Las categorías se cargarán dinámicamente aquí -->
+                    </div>
+                </li>
+                <li id="menu-mis-cursos"><a href="misCursos.html">Mis Cursos <span class="numero-de-cursos">0</span></a></li>
+                <li id="menu-crear-curso"><a href="admin.html">Crear Curso</a></li>
+            </ul>
+            <section class="menu-derecha">
+                <a href="javascript:void(0);" class="buscar">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="login.html" id="btn-login" class="iniciar-sesion">Iniciar sesión</a>
+                <a href="registro.html" id="btn-register" class="registrarse">Registrarse</a>
+                <i id="icon-user" class="fas fa-user"></i>
+                <div class="user-menu">
+                    <a href="javascript:void(0);" id="logout">Cerrar sesión</a>
+                </div>
+            </section>
+        </nav>
+        
+    </section>
+
+    <!-- Reproductor de Video -->
+    <section class="video-detalle">
+        <div class="video-container">
+            <a href="verCurso.html" class="back-arrow">
+                <i class="custom-back-arrow"></i>
+            </a>
+            <iframe id="video-frame" width="800" height="450" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Lecciones del Curso -->
+    <section class="curso-lecciones">
+        <h2>Lecciones del Curso</h2>
+        <div class="lecciones-container">
+            <div id="lecciones-lista" class="lecciones-carousel">
+                <!-- Aquí se mostrarán las lecciones -->
+            </div>
+        </div>
+    </section>
+    <!--Footer-->
+    <footer>
+        <span class="copyright">
+            Unet por Andres Quintanilla Cuellar - 2024
+        </span>
+        <div class="subscribe">
+            <form>
+                <input type="email" placeholder="Correo" required>
+                <input type="submit" value="Subscribe">
+            </form>
+        </div>
+    </footer>
+
+    <script src="js/verVideo.js"></script>
+    <script src="Js/login-registro.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="Js/dropdownCategoria.js"></script>
+
+</body>
+</html>

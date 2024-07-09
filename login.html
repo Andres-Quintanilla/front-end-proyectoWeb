@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login-registro.css">
+</head>
+<body>
+    <div class="formularios login-activo">
+        <div class="formulario-login">
+            <form id="form-login">
+                <strong>Login</strong>
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+                <span class="error-message" id="email-error"></span>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <span class="error-message" id="password-error"></span>
+                <input type="button" value="Iniciar sesión" onclick="validarLogin()">
+                <div id="mensaje-login"></div>
+            </form>
+            <div class="link-formulario">
+                <a href="registro.html" class="crear-cuenta">Crear una cuenta</a>
+            </div>
+        </div>
+    </div>
+    <script src="Js/login-registro.js"></script>
+</body>
+</html>

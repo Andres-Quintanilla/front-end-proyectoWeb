@@ -1,0 +1,99 @@
+.contenedor-servicios {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.servicios {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    min-width: 250px;
+    padding: 20px;
+    margin: 15px;
+    flex-grow: 0.7;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.servicios i {
+    color: #0b9d8a;
+    font-size: 2rem;
+    margin: 15px;
+}
+
+.servicios span {
+    color: #222222;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.servicios p {
+    color: #878787;
+    margin: 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.servicios::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.servicios i,
+.servicios span,
+.servicios p {
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1010px) {
+    .contenedor-servicios {
+        flex-direction: column;
+    }
+
+    .servicios {
+        width: 90%;
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .contenedor-servicios {
+        width: 100%;
+    }
+
+    .servicios{
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .servicios i {
+        font-size: 1.5rem;
+    }
+
+    .sservicios span {
+        font-size: 0.9rem;
+    }
+
+    .servicios p {
+        font-size: 0.8rem;
+    }
+}

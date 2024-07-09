@@ -1,0 +1,157 @@
+:root {
+    --verde: #82b04d;
+    --celeste: #5ce4dd;
+}
+
+.admin-container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-header h1 {
+    font-size: 2rem;
+}
+
+.admin-header button {
+    padding: 10px 20px;
+    background-color: var(--verde);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-header button:hover {
+    background-color: #5ca43f;
+}
+
+.course-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.course-item {
+    border: 1px solid #f3f3f3;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.course-item h3 {
+    margin: 0;
+}
+
+.course-item img.course-image {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.course-actions,
+.lesson-actions,
+.añadirLeccion {
+    margin-top: 10px;
+}
+
+.course-actions button,
+.lesson-actions button,
+.añadirLeccion {
+    padding: 5px 10px;
+    background-color: var(--celeste);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.course-actions button:hover,
+.lesson-actions button:hover,
+.añadirLeccion:hover {
+    background-color: #4ac4c1;
+}
+
+.lesson-list {
+    margin-top: 20px;
+}
+
+.lesson-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.lesson-item span {
+    font-size: 1rem;
+}
+
+/* CSS para el cuadro de mensaje personalizado */
+.message-box {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+
+@media (max-width: 1010px) {
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-header button {
+        margin-top: 10px;
+    }
+
+    .lesson-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .lesson-actions {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .admin-header button {
+        padding: 8px 15px;
+    }
+
+    .course-item {
+        padding: 15px;
+    }
+
+    .course-item h3 {
+        font-size: 1.5rem;
+    }
+
+    .lesson-item span {
+        font-size: 0.9rem;
+    }
+
+    .añadirLeccion {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

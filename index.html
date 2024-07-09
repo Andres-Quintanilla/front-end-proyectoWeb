@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unet</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/login-registro.css">
+    <link rel="stylesheet" href="css/lightslider.css">
+    <link rel="stylesheet" href="css/banner.css">
+    <link rel="stylesheet" href="css/cursos.css">
+    <link rel="stylesheet" href="css/categorias.css">
+    <link rel="stylesheet" href="css/banner-profesor.css">
+    <link rel="stylesheet" href="css/servicios.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="js/JQuery.js"></script>
+    <script src="js/lightslider.js"></script>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!--Menu-->
+    <section class="contenedor-navegacion">
+        <nav class="navegacion">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="Logo de Unet">
+            </a>
+            <div class="menu-hamburguesa"></div>
+            <ul class="lista-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropbtn">Categorías</a>
+                    <div class="dropdown-content" id="dropdown-categorias">
+                        <!-- Las categorías se cargarán dinámicamente aquí -->
+                    </div>
+                </li>
+                <li id="menu-mis-cursos"><a href="misCursos.html">Mis Cursos <span class="numero-de-cursos">0</span></a></li>
+                <li id="menu-crear-curso"><a href="admin.html">Crear Curso</a></li>
+            </ul>
+            <section class="menu-derecha">
+                <a href="javascript:void(0);" class="buscar">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="login.html" id="btn-login" class="iniciar-sesion">Iniciar sesión</a>
+                <a href="registro.html" id="btn-register" class="registrarse">Registrarse</a>
+                <i id="icon-user" class="fas fa-user"></i>
+                <div class="user-menu">
+                    <a href="javascript:void(0);" id="logout">Cerrar sesión</a>
+                </div>
+            </section>
+        </nav>
+        
+    </section>
+    <!--Barra de busqueda-->
+    <section class="barra-de-busqueda">
+        <div class="input-busqueda">
+            <input type="text" placeholder="Buscar...">
+            <a href="javascript:void(0);" class="cancelar-busqueda">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+    </section>
+    <!--Banner-->
+    <section id="adaptable">
+        <li class="item-a">
+            <section class="contenedor-slide slide-1">
+                <div class="contenedor-slide-texto">
+                    <div class="slide-texto">
+                        <strong>¡Es hora de <br> mejorar tu futuro,
+                            <br>
+                            <font>comienza ahora!</font>
+                        </strong>
+                        <a href="login.html" class="btn-slide">Inicia Ya</a>
+                    </div>
+                </div>
+            </section>
+        </li>
+    </section>
+    <!--Algunos Cursos-->
+    <section class="contenedor-algunos-cursos">
+        <div class="algunos-cursos">
+            <strong>Algunos Cursos</strong>
+            <p>Estos pueden ser cursos de tu agrado</p>
+        </div>
+        <section class="contenedor-cursos">
+            <div id="courses-container" class="cursos">
+                <!-- Aquí se mostrarán los cursos -->
+            </div>
+        </section>
+    </section>
+    <!--Categorias-->
+    <section class="categorias">
+        <h2>Categorías</h2>
+        <section class="contenedor-categorias">
+            <div class="categoria-contenedor">
+                <article class="categoria">
+                    <div class="categoria-img">
+                        <img src="img/categorias/desarrollo1.jpg" alt="Desarrollo">
+                    </div>
+                    <div class="categoria-detalle">
+                        <a href="#" class="categoria-nombre">Desarrollo</a>
+                    </div>
+                </article>
+                <article class="categoria">
+                    <div class="categoria-img">
+                        <img src="img/categorias/diseño.jpg" alt="Diseño">
+                    </div>
+                    <div class="categoria-detalle">
+                        <a href="#" class="categoria-nombre">Diseño</a>
+                    </div>
+                </article>
+                <article class="categoria">
+                    <div class="categoria-img">
+                        <img src="img/categorias/fotografia.jpg" alt="Fotografía">
+                    </div>
+                    <div class="categoria-detalle">
+                        <a href="#" class="categoria-nombre">Fotografía</a>
+                    </div>
+                </article>
+                <article class="categoria">
+                    <div class="categoria-img">
+                        <img src="img/categorias/informatica-y-software.jpg" alt="Informática y Software">
+                    </div>
+                    <div class="categoria-detalle">
+                        <a href="#" class="categoria-nombre">Informática y Software</a>
+                    </div>
+                </article>
+                <article class="categoria">
+                    <div class="categoria-img">
+                        <img src="img/categorias/marketing.jpg" alt="Marketing">
+                    </div>
+                    <div class="categoria-detalle">
+                        <a href="#" class="categoria-nombre">Marketing</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </section>
+    <!--Ser Profesor-->
+    <section class="banner-profesor f-slide-3">
+        <article class="contenedor-banner-profesor-texto">
+            <div class="banner-profesor-texto">
+                <strong>Conviértete en <br />
+                    <font>instructor</font>
+                </strong>
+                <a href="#" class="btn-banner-profesor">Ahora</a>
+            </div>
+        </article>
+    </section>
+    <!--Servicio-->
+    <section class="contenedor-servicios">
+        <div class="servicios">
+            <i class="fas fa-globe"></i>
+            <span>Online</span>
+            <p>Clases 100% Online</p>
+        </div>
+        <div class="servicios">
+            <i class="fas fa-book-open"></i>
+            <span>Arma tu aprendizaje</span>
+            <p>Escoge con libertad lo que quieras aprender</p>
+        </div>
+        <div class="servicios">
+            <i class="fas fa-money-bill"></i>
+            <span>100% Gratis</span>
+            <p>Lo mejor es que es gratis</p>
+        </div>
+    </section>
+    <!--Footer-->
+    <footer>
+        <span class="copyright">
+            Unet por Andres Quintanilla Cuellar - 2024
+        </span>
+        <div class="subscribe">
+            <form>
+                <input type="email" placeholder="Correo" required>
+                <input type="submit" value="Subscribe">
+            </form>
+        </div>
+    </footer>
+    <!--Scripts-->
+    <script src="js/script.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/login-registro.js"></script>
+    <script src="js/curso.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="Js/dropdownCategoria.js"></script>
+</body>
+</html>

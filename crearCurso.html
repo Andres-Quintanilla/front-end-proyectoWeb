@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unet - Crear Curso</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/crearCurso.css">
+    <link rel="stylesheet" href="css/login-registro.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/lightslider.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="js/JQuery.js"></script>
+    <script src="js/lightslider.js"></script>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="contenedor-navegacion">
+        <nav class="navegacion">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="Logo de Unet">
+            </a>
+            <div class="menu-hamburguesa"></div>
+            <ul class="lista-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropbtn">Categorías</a>
+                    <div class="dropdown-content" id="dropdown-categorias">
+                        <!-- Las categorías se cargarán dinámicamente aquí -->
+                    </div>
+                </li>
+                <li id="menu-mis-cursos"><a href="misCursos.html">Mis Cursos <span class="numero-de-cursos">0</span></a></li>
+                <li id="menu-crear-curso"><a href="crearCurso.html">Crear Curso</a></li>
+            </ul>
+            <section class="menu-derecha">
+                <a href="javascript:void(0);" class="buscar">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="login.html" id="btn-login" class="iniciar-sesion">Iniciar sesión</a>
+                <a href="registro.html" id="btn-register" class="registrarse">Registrarse</a>
+                <i id="icon-user" class="fas fa-user"></i>
+                <div class="user-menu">
+                    <a href="javascript:void(0);" id="logout">Cerrar sesión</a>
+                </div>
+            </section>
+        </nav>
+    </section>
+
+    <section class="barra-de-busqueda">
+        <div class="input-busqueda">
+            <input type="text" placeholder="Buscar...">
+            <a href="javascript:void(0);" class="cancelar-busqueda">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+    </section>
+
+    <div class="video-form-container">
+        <h1>
+            <a href="admin.html" class="back-arrow"><i class="fas fa-arrow-left"></i></a> 
+            Crear Nuevo Curso
+        </h1>
+        <form class="video-form" id="create-course-form">
+            <input type="hidden" id="cursoId" name="cursoId">
+            <label for="course-name">Nombre del Curso:</label>
+            <input type="text" id="course-name" name="course-name" placeholder="Nombre del curso">
+
+            <label for="category">Categoría:</label>
+            <select id="category" name="category">
+                <!-- Las categorías se cargarán dinámicamente aquí -->
+            </select>
+            <br>
+            <label for="course-image">Imagen del Curso:</label>
+            <input type="file" id="course-image" name="course-image">
+
+            <label for="video-link">Link del Video:</label>
+            <input type="url" id="video-link" name="video-link" placeholder="URL del video">
+
+            <label for="description">Descripción:</label>
+            <textarea id="description" name="description" rows="4" placeholder="Descripción del video"></textarea>
+
+            <button type="button" onclick="saveCourse()">Guardar Curso</button>
+        </form>
+    </div>
+
+    <footer>
+        <span class="copyright">
+            Unet por Andres Quintanilla Cuellar - 2024
+        </span>
+        <div class="subscribe">
+            <form>
+                <input type="email" placeholder="Correo" required>
+                <input type="submit" value="Subscribe">
+            </form>
+        </div>
+    </footer>
+
+    <script src="js/menu.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/login-registro.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isEdit = urlParams.get('edit');
+            const idCurso = urlParams.get('idCurso');
+
+            if (isEdit && idCurso) {
+                loadCourseData(idCurso);
+            }
+
+            loadCategories();
+        });
+
+        async function loadCategories() {
+            try {
+                const response = await fetch('http://localhost:3001/categorias');
+                if (response.ok) {
+                    const categorias = await response.json();
+                    const categorySelect = document.getElementById('category');
+                    const dropdownCategorias = document.getElementById('dropdown-categorias');
+
+                    categorias.forEach(categoria => {
+                        const option = document.createElement('option');
+                        option.value = categoria.idCategoria;
+                        option.textContent = categoria.nombre;
+                        categorySelect.appendChild(option);
+
+                        const dropdownLink = document.createElement('a');
+                        dropdownLink.href = `cursos.html?categoria=${categoria.idCategoria}`;
+                        dropdownLink.textContent = categoria.nombre;
+                        dropdownCategorias.appendChild(dropdownLink);
+                    });
+                } else {
+                    console.error('Error al cargar las categorías');
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            }
+        }
+
+        async function loadCourseData(idCurso) {
+            try {
+                const response = await fetch(`http://localhost:3001/cursos/${idCurso}`);
+                if (response.ok) {
+                    const curso = await response.json();
+                    document.getElementById('cursoId').value = curso.idCurso;
+                    document.getElementById('course-name').value = curso.nombre;
+                    document.getElementById('category').value = curso.categoriaId;
+                    document.getElementById('video-link').value = curso.videoLink;
+                    document.getElementById('description').value = curso.descripcion;
+                } else {
+                    console.error('Error al cargar los datos del curso');
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            }
+        }
+
+        async function saveCourse() {
+            const idCurso = document.getElementById('cursoId').value;
+            const nombre = document.getElementById('course-name').value;
+            const categoriaId = document.getElementById('category').value;
+            const videoLink = document.getElementById('video-link').value;
+            const descripcion = document.getElementById('description').value;
+            const imagen = document.getElementById('course-image').files[0];
+            const userId = localStorage.getItem('userId');
+
+            if (!nombre || !categoriaId || !videoLink || !descripcion || !userId) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('nombre', nombre);
+            formData.append('categoriaId', categoriaId);
+            formData.append('videoLink', videoLink);
+            formData.append('descripcion', descripcion);
+            if (imagen) {
+                formData.append('imagen', imagen);
+            }
+            formData.append('userId', userId);
+
+            try {
+                const method = idCurso ? 'PUT' : 'POST';
+                const url = idCurso ? `http://localhost:3001/cursos/${idCurso}` : 'http://localhost:3001/cursos';
+
+                const response = await fetch(url, {
+                    method: method,
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Curso guardado exitosamente');
+                    window.location.href = 'admin.html';
+                } else {
+                    alert('Error al guardar el curso');
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            }
+        }
+    </script>
+</body>
+</html>

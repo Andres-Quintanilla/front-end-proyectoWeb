@@ -1,0 +1,248 @@
+:root {
+    --verde: #82b04d;
+    --celeste: #5ce4dd;
+}
+
+.curso-detalle, .video-detalle {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.curso-header, .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Center content horizontally */
+    position: relative; /* Added for positioning the back arrow */
+}
+
+.curso-header img, .video-container iframe {
+    width: 720px;
+    height: 450px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.curso-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.curso-info h1 {
+    font-size: 2rem;
+    margin: 0 0 10px;
+}
+
+.curso-info p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.curso-info button {
+    padding: 10px 20px;
+    background-color: var(--verde);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.curso-info button:hover {
+    background-color: var(--celeste);
+}
+
+.curso-lecciones {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.curso-lecciones h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.lecciones-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+}
+
+.lecciones-carousel {
+    display: flex;
+    overflow-x: hidden; /* Hide horizontal scroll bar */
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    gap: 20px;
+}
+
+.leccion {
+    flex: 0 0 300px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.leccion:hover {
+    transform: scale(1.05);
+}
+
+.leccion img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.leccion h3 {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-btn.left {
+    left: 10px;
+}
+
+.carousel-btn.right {
+    right: 10px;
+}
+
+.carousel-btn i {
+    font-size: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1010px) {
+    .curso-header, .video-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .curso-info {
+        text-align: center;
+    }
+
+    .curso-info h1 {
+        font-size: 1.5rem;
+    }
+
+    .curso-info p {
+        font-size: 1rem;
+    }
+
+    .curso-info button {
+        font-size: 0.9rem;
+    }
+
+    .lecciones-carousel {
+        gap: 10px;
+    }
+
+    .leccion {
+        flex: 0 0 45%;
+    }
+
+    .carousel-btn.left {
+        left: 5px;
+    }
+
+    .carousel-btn.right {
+        right: 5px;
+    }
+
+    .video-container iframe {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .curso-header, .video-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .curso-info {
+        text-align: center;
+    }
+
+    .curso-info h1 {
+        font-size: 1.2rem;
+    }
+
+    .curso-info p {
+        font-size: 0.9rem;
+    }
+
+    .curso-info button {
+        font-size: 0.8rem;
+    }
+
+    .lecciones-carousel {
+        gap: 10px;
+    }
+
+    .leccion {
+        flex: 0 0 100%;
+    }
+
+    .curso-header img, .video-container iframe {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .carousel-btn.left {
+        left: 5px;
+    }
+
+    .carousel-btn.right {
+        right: 5px;
+    }
+
+    .back-arrow {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        transform: translateY(0);
+        font-size: 2rem;
+        color: #555;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .back-arrow:hover {
+        color: var(--verde);
+    }
+
+    .custom-back-arrow::before {
+        content: '\2190'; /* Unicode for left arrow */
+    }
+}

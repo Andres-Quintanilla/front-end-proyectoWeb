@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unet - Crear Lección</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/crearCurso.css">
+    <link rel="stylesheet" href="css/login-registro.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/lightslider.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="js/JQuery.js"></script>
+    <script src="js/lightslider.js"></script>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="contenedor-navegacion">
+        <nav class="navegacion">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="Logo de Unet">
+            </a>
+            <div class="menu-hamburguesa"></div>
+            <ul class="lista-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropbtn">Categorías</a>
+                    <div class="dropdown-content" id="dropdown-categorias">
+                        <!-- Las categorías se cargarán dinámicamente aquí -->
+                    </div>
+                </li>
+                <li id="menu-mis-cursos"><a href="misCursos.html">Mis Cursos <span class="numero-de-cursos">0</span></a></li>
+                <li id="menu-crear-curso"><a href="crearCurso.html">Crear Curso</a></li>
+            </ul>
+            <section class="menu-derecha">
+                <a href="javascript:void(0);" class="buscar">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="login.html" id="btn-login" class="iniciar-sesion">Iniciar sesión</a>
+                <a href="registro.html" id="btn-register" class="registrarse">Registrarse</a>
+                <i id="icon-user" class="fas fa-user"></i>
+                <div class="user-menu">
+                    <a href="javascript:void(0);" id="logout">Cerrar sesión</a>
+                </div>
+            </section>
+        </nav>
+    </section>
+
+    <section class="barra-de-busqueda">
+        <div class="input-busqueda">
+            <input type="text" placeholder="Buscar...">
+            <a href="javascript:void(0);" class="cancelar-busqueda">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+    </section>
+
+    <div class="video-form-container">
+        <h1>
+            <a href="admin.html" class="back-arrow"><i class="fas fa-arrow-left"></i></a> 
+            Crear Nueva Lección
+        </h1>
+        <form class="video-form" id="create-lesson-form" enctype="multipart/form-data">
+            <input type="hidden" id="leccionId" name="leccionId">
+            <input type="hidden" id="cursoId" name="cursoId">
+            <label for="lesson-name">Nombre de la Lección:</label>
+            <input type="text" id="lesson-name" name="lesson-name" placeholder="Nombre de la lección" required>
+
+            <label for="lesson-image">Imagen de la Lección:</label>
+            <input type="file" id="lesson-image" name="lesson-image">
+
+            <label for="video-link">Link del Video:</label>
+            <input type="url" id="video-link" name="video-link" placeholder="URL del video" required>
+
+            <label for="description">Descripción:</label>
+            <textarea id="description" name="description" rows="4" placeholder="Descripción de la lección" required></textarea>
+            
+            <button type="button" onclick="saveLesson()">Guardar Lección</button>
+        </form>
+    </div>
+
+    <footer>
+        <span class="copyright">
+            Unet por Andres Quintanilla Cuellar - 2024
+        </span>
+        <div class="subscribe">
+            <form>
+                <input type="email" placeholder="Correo" required>
+                <input type="submit" value="Subscribe">
+            </form>
+        </div>
+    </footer>
+
+    <script src="js/menu.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/login-registro.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="Js/dropdownCategoria.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isEdit = urlParams.get('edit');
+            const idLeccion = urlParams.get('idLeccion');
+            const cursoId = urlParams.get('cursoId');
+
+            if (isEdit && idLeccion) {
+                loadLessonData(idLeccion);
+            } else if (cursoId) {
+                document.getElementById('cursoId').value = cursoId;
+            }
+        });
+
+        async function loadLessonData(idLeccion) {
+            try {
+                const response = await fetch(`http://localhost:3001/lecciones/${idLeccion}`);
+                if (response.ok) {
+                    const leccion = await response.json();
+                    document.getElementById('leccionId').value = leccion.idLeccion;
+                    document.getElementById('lesson-name').value = leccion.nombre;
+                    document.getElementById('video-link').value = leccion.videoLink;
+                    document.getElementById('description').value = leccion.descripcion;
+                    document.getElementById('cursoId').value = leccion.cursoId;
+                } else {
+                    console.error('Error al cargar los datos de la lección');
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            }
+        }
+
+        async function saveLesson() {
+            const idLeccion = document.getElementById('leccionId').value;
+            const nombre = document.getElementById('lesson-name').value;
+            const videoLink = document.getElementById('video-link').value;
+            const descripcion = document.getElementById('description').value;
+            const cursoId = document.getElementById('cursoId').value;
+            const imagen = document.getElementById('lesson-image').files[0];
+
+            if (!nombre || !videoLink || !descripcion || !cursoId) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('nombre', nombre);
+            formData.append('videoLink', videoLink);
+            formData.append('descripcion', descripcion);
+            formData.append('cursoId', cursoId);
+            if (imagen) {
+                formData.append('imagen', imagen);
+            }
+
+            try {
+                const method = idLeccion ? 'PUT' : 'POST';
+                const url = idLeccion ? `http://localhost:3001/lecciones/${idLeccion}` : 'http://localhost:3001/lecciones';
+
+                const response = await fetch(url, {
+                    method: method,
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Lección guardada exitosamente');
+                    window.location.href = `admin.html?cursoId=${cursoId}`;
+                } else {
+                    alert('Error al guardar la lección');
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            }
+        }
+    </script>
+</body>
+</html>

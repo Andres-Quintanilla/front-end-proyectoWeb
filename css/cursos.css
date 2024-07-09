@@ -1,0 +1,242 @@
+:root {
+    --verde: #82b04d;
+    --celeste: #5ce4dd;
+}
+
+.contenedor-algunos-cursos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.algunos-cursos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.algunos-cursos strong{
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #ffffff;
+    background-color: #202020;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 40px;
+    padding: 5px 30px;
+}
+
+.algunos-cursos p{
+    color: #808080;
+    margin: 10px;
+    font-size: 0.9rem;
+}
+
+.contenedor-cursos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cursos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.curso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #f7f7f7;
+    border-radius: 10px;
+    width: 300px; /* Ajustar según el diseño */
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.curso:hover {
+    transform: scale(1.05);
+}
+
+.curso-img img {
+    width: 100%;
+    height: 200px; /* Ajustar según el diseño */
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.curso-detalle {
+    padding: 15px;
+    text-align: center;
+}
+
+.curso-nombre {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.curso-instructor {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+.curso-modalidad {
+    font-size: 0.8rem;
+    color: #888;
+    background-color: #eee;
+    padding: 2px 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+
+/*.añadir-curso{
+    position: absolute;
+    right: -20px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background-color: #0b9d8a;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+    display: none;
+    animation: fade .3s;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.añadir-curso:hover{
+    background-color: #f76b6a;
+    transition: all ease .2s;
+}
+
+.curso:hover .añadir-curso{
+    display: flex;
+}*/
+
+/*Código para porcentaje y barra de progreso para mis cursos*/
+
+.contenedor-progreso {
+    width: 90%;
+    background-color: #f3f3f3;
+    border-radius: 20px;
+    margin: 10px 0;
+    position: relative;
+    height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.barra-de-progreso{
+    height: 100%;
+    background-color: var(--verde);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+.porcentaje-de-progreso {
+    position: absolute;
+    right: 10px;
+    color: #555;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+
+@media (max-width: 1010px) {
+    .contenedor-cursos {
+        flex-direction: column;
+    }
+
+    .curso {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .img-curso {
+        width: 100%;
+        height: auto;
+    }
+
+    .añadir-curso {
+        right: 10px;
+        top: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .cursos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .curso {
+        width: 90%; /* Ajuste al ancho del dispositivo */
+    }
+
+    .curso-img img {
+        height: auto; /* Mantener proporciones */
+    }
+}
+
+
+@media (max-width: 600px) {
+    .algunos-cursos strong,
+    .algunos-cursos p {
+        text-align: center;
+    }
+
+    .curso {
+        width: 70%; /* Aprovecha todo el ancho disponible */
+        margin: 10px 0;
+    }
+
+    .curso-img img {
+        height: 180px; /* Altura ajustada para móviles */
+    }
+
+    .curso-detalle {
+        padding: 10px;
+    }
+
+    .curso-nombre {
+        font-size: 1rem; /* Texto más pequeño para ajustarse a pantallas pequeñas */
+    }
+
+    .curso-instructor,
+    .curso-modalidad {
+        font-size: 0.8rem; /* Tamaño de fuente reducido para detalles */
+    }
+
+    .contenedor-progreso {
+        width: 100%;
+    }
+
+    .cursos {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
